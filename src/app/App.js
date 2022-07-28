@@ -1,10 +1,13 @@
+import { Routes, Route } from "react-router-dom";
 import Home from "../components/Home";
+import QuizSession from "../components/QuizSession";
 
 function App() {
   return (
-    <>
-      <Home />
-    </>
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/quiz" element={<QuizSession />} />
+    </Routes>
   );
 }
 

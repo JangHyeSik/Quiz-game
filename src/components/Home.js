@@ -1,12 +1,15 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import Btn from "./Btn";
 
 export default function Home() {
+  const navigate = useNavigate();
+
   return (
     <HomeWrapper>
       <Title>Quiz Game</Title>
-      <Btn>퀴즈 풀기</Btn>
+      <Btn handleGoNext={() => navigate("/quiz")}>퀴즈 풀기</Btn>
     </HomeWrapper>
   );
 }
