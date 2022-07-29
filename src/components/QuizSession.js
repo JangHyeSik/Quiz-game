@@ -12,6 +12,8 @@ export default function QuizSession() {
     correctCount: 0,
     inCorrectCount: 0,
   });
+  const [isCheck, setIsCheck] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   const handleGoNext = () => {
     if (quizIndex === quizList.length - 1) {
@@ -24,11 +26,14 @@ export default function QuizSession() {
     }
 
     setQuizIndex(quizIndex + 1);
+    setIsCheck(false);
   };
 
   const fetchQuizData = async () => {
     const { results } = await requestQuizList();
+
     setQuizList(results);
+    setIsLoading(false);
   };
 
   useEffect(() => {
@@ -43,11 +48,12 @@ export default function QuizSession() {
           quizIndex={quizIndex}
           result={result}
           setResult={setResult}
+          isCheck={isCheck}
+          setIsCheck={setIsCheck}
+          isLoading={isLoading}
         />
       </QuizContainer>
-      <Btn handleGoNext={handleGoNext}>
-        다음 문제
-      </Btn>
+      {isCheck && <Btn handleGoNext={handleGoNext}>다음 문제</Btn>}
     </QuizSessionWrapper>
   );
 }
@@ -60,7 +66,7 @@ const QuizSessionWrapper = styled.div`
 `;
 
 const QuizContainer = styled.div`
-  width: 85%;
+  width: 65%;
   height: 80%;
   border-radius: 10px;
   background-color: #ffffff;

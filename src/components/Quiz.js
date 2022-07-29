@@ -1,11 +1,9 @@
-import { useState, useMemo } from "react";
+import { useMemo } from "react";
 import styled from "styled-components";
 import { shuffle } from "lodash";
+import Loading from "./Loading";
 
-
-export default function Quiz({ quizList, quizIndex, result, setResult }) {
-  const [isCheck, setIsCheck] = useState(false);
-
+export default function Quiz({ quizList, quizIndex, result, setResult, isCheck, setIsCheck, isLoading }) {
   const quiz = quizList[quizIndex];
   const { question, correct_answer, incorrect_answers } = quiz ? quiz : {};
   const { isCompleted, correctCount, inCorrectCount } = result;
@@ -26,27 +24,70 @@ export default function Quiz({ quizList, quizIndex, result, setResult }) {
   };
 
   return (
-    <>
-      {(!isCompleted && quiz) &&
+    <QuizWrapper>
+      {isLoading && <Loading />}
+      {quiz &&
         <>
-          <Question>{question}</Question>
-          {selectList.map((select) => {
-            return (
-              <div key={select}>
-                <CheckBox type="checkbox" value={select} onChange={handleChange}/>
-                {select}
-              </div>
-            );
-          })}
+          {!isCompleted ? (
+            <>
+              <Question>{question}</Question>
+              {selectList.map((select) => {
+                return (
+                  <SelectWrapper
+                    key={select}
+                    isCorrect={select === correct_answer}
+                    isCheck={isCheck}
+                  >
+                    <CheckBox
+                      type="checkbox"
+                      value={select}
+                      onChange={handleChange}
+                      disabled={isCheck}
+                    />
+                    <SelectText>{select}</SelectText>
+                  </SelectWrapper>
+                );
+              })}
+            </>
+          ) : (
+            <>
+              <h2>수고하셨습니다 !</h2>
+              <div>소요 시간:</div>
+              <div>총 개수: {quizList.length}개</div>
+              <div>정답 개수: {correctCount}개</div>
+              <div>오답 개수: {inCorrectCount}개</div>
+            </>
+          )}
         </>
       }
-    </>
+    </QuizWrapper>
   );
 }
 
-const Question = styled.div`
-  font-size: 20px;
+const QuizWrapper = styled.div`
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  margin: 0px 50px;
+`;
+
+const Question = styled.h2`
+`;
+
+const SelectWrapper = styled.div`
+  height: 10%;
+  display: flex;
+  align-items: center;
+  border-radius: 10px;
+  background-color: ${({ isCheck, isCorrect }) => isCheck ? isCorrect ? "#33d9b2" : "#f1f2f6" : "#ffffff"};
 `;
 
 const CheckBox = styled.input`
+  zoom: 2;
+`;
+
+const SelectText = styled.span`
+  font-size: 20px;
+  margin-left: 20px;
 `;
