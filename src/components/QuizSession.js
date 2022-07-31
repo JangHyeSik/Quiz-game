@@ -1,27 +1,28 @@
 import { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import Quiz from "./Quiz";
 import Btn from "./Btn";
+import { finishQuiz } from "../features/result/resultSlice";
 import { requestQuizList } from "../api/api";
 
 export default function QuizSession() {
+  const dispatch = useDispatch();
+  const result = useSelector((state) => state.result);
+
   const [quizList, setQuizList] = useState([]);
   const [quizIndex, setQuizIndex] = useState(0);
-  const [result, setResult] = useState({
-    isCompleted: false,
-    correctCount: 0,
-    inCorrectCount: 0,
-  });
   const [isCheck, setIsCheck] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
 
+  const { startTime } = result;
+
   const handleGoNext = () => {
     if (quizIndex === quizList.length - 1) {
-      setResult({
-        ...result,
-        isCompleted: true,
-      });
+      const endTime = Date.now();
+      const time = endTime - startTime;
 
+      dispatch(finishQuiz({ time }));
       return;
     }
 
@@ -46,8 +47,6 @@ export default function QuizSession() {
         <Quiz
           quizList={quizList}
           quizIndex={quizIndex}
-          result={result}
-          setResult={setResult}
           isCheck={isCheck}
           setIsCheck={setIsCheck}
           isLoading={isLoading}

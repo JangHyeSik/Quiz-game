@@ -1,15 +1,25 @@
 import React from "react";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import Btn from "./Btn";
+import { startQuiz } from "../features/result/resultSlice";
 
 export default function Home() {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  const handleGoNext = () => {
+    const startTime = Date.now();
+
+    dispatch(startQuiz({ startTime }));
+    navigate("/quiz");
+  }
 
   return (
     <HomeWrapper>
       <Title>Quiz Game</Title>
-      <Btn handleGoNext={() => navigate("/quiz")}>퀴즈 풀기</Btn>
+      <Btn handleGoNext={handleGoNext}>퀴즈 풀기</Btn>
     </HomeWrapper>
   );
 }
