@@ -52,13 +52,13 @@ export default function Quiz({ quizList, quizIndex, isCheck, setIsCheck, isLoadi
               })}
             </>
           ) : (
-            <>
-              <h2>수고하셨습니다 !</h2>
-              <div>소요 시간: {makeTimeText(time)}초</div>
-              <div>총 개수: {quizList.length}개</div>
-              <div>정답 개수: {correctCount}개</div>
-              <div>오답 개수: {inCorrectCount}개</div>
-            </>
+            <ResultWrapper>
+              <h2 className="result-comment">수고하셨습니다 😊</h2>
+              <ResultText>소요 시간: {makeTimeText(time)}초</ResultText>
+              <ResultText>총 개수: {quizList.length}개</ResultText>
+              <ResultText>정답 개수: {correctCount}개</ResultText>
+              <ResultText>오답 개수: {inCorrectCount}개</ResultText>
+            </ResultWrapper>
           )}
         </>
       }
@@ -92,4 +92,20 @@ const CheckBox = styled.input`
 const SelectText = styled.span`
   font-size: 20px;
   margin-left: 20px;
+`;
+
+const ResultWrapper = styled.div`
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+
+  .result-comment {
+    font-size: 30px;
+  }
+`;
+
+const ResultText = styled.div`
+  font-size: 20px;
 `;
