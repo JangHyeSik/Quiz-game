@@ -1,0 +1,10 @@
+{
+  "files": {
+    "main.js": "/Quiz-game/static/js/main.f2ded93a.js",
+    "index.html": "/Quiz-game/index.html",
+    "main.f2ded93a.js.map": "/Quiz-game/static/js/main.f2ded93a.js.map"
+  },
+  "entrypoints": [
+    "static/js/main.f2ded93a.js"
+  ]
+}
