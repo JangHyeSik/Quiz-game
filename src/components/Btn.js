@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { MAIN_COLOR_1, WHITE_COLOR } from "../constants/styles";
 
 export default function Btn({ handleGoNext, value, children }) {
   return (
@@ -15,8 +16,8 @@ const Button = styled.button`
   border-radius: 10px;
   font-size: 20px;
   font-weight: bold;
-  color: #ffffff;
-  background-color: #33d9b2;
+  color: ${WHITE_COLOR};
+  background-color: ${MAIN_COLOR_1};
   cursor: pointer;
   transition: 0.5s;
 

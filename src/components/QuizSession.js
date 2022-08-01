@@ -6,6 +6,7 @@ import Quiz from "./Quiz";
 import Btn from "./Btn";
 import { finishQuiz, resetQuiz } from "../features/result/resultSlice";
 import { requestQuizList } from "../api/api";
+import { WHITE_COLOR } from "../constants/styles";
 
 export default function QuizSession() {
   const dispatch = useDispatch();
@@ -98,7 +99,7 @@ const QuizContainer = styled.div`
   width: 65%;
   height: 80%;
   border-radius: 10px;
-  background-color: #ffffff;
+  background-color: ${WHITE_COLOR};
   box-shadow: 0px 4px 10px rgb(0 0 0 / 16%);
 `;
 

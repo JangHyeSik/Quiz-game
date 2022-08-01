@@ -3,8 +3,9 @@ import { useDispatch, useSelector } from "react-redux/es/exports";
 import styled from "styled-components";
 import { shuffle } from "lodash";
 import Loading from "./Loading";
-import { makeTimeText } from "../utils/utils";
+import Result from "./Result";
 import { changeScore } from "../features/result/resultSlice";
+import { MAIN_COLOR_1, WHITE_COLOR, GRAY_COLOR } from "../constants/styles";
 
 export default function Quiz({ quizList, quizIndex, isCheck, setIsCheck, isLoading }) {
   const dispatch = useDispatch();
@@ -12,7 +13,7 @@ export default function Quiz({ quizList, quizIndex, isCheck, setIsCheck, isLoadi
   const result = useSelector((state) => state.result);
   const quiz = quizList[quizIndex];
 
-  const { isCompleted, time, correctCount, inCorrectCount } = result;
+  const { isCompleted } = result;
   const { question, correct_answer, incorrect_answers } = quiz ? quiz : {};
 
   const selectList = useMemo(() => quiz && shuffle([correct_answer, ...incorrect_answers]), [quizList, quizIndex]);
@@ -52,13 +53,7 @@ export default function Quiz({ quizList, quizIndex, isCheck, setIsCheck, isLoadi
               })}
             </>
           ) : (
-            <ResultWrapper>
-              <h2 className="result-comment">수고하셨습니다 😊</h2>
-              <ResultText>소요 시간: {makeTimeText(time)}초</ResultText>
-              <ResultText>총 개수: {quizList.length}개</ResultText>
-              <ResultText>정답 개수: {correctCount}개</ResultText>
-              <ResultText>오답 개수: {inCorrectCount}개</ResultText>
-            </ResultWrapper>
+            <Result />
           )}
         </>
       }
@@ -82,7 +77,7 @@ const SelectWrapper = styled.div`
   display: flex;
   align-items: center;
   border-radius: 10px;
-  background-color: ${({ isCheck, isCorrect }) => isCheck ? isCorrect ? "#33d9b2" : "#f1f2f6" : "#ffffff"};
+  background-color: ${({ isCheck, isCorrect }) => isCheck ? isCorrect ? MAIN_COLOR_1 : GRAY_COLOR : WHITE_COLOR};
 `;
 
 const CheckBox = styled.input`
@@ -92,20 +87,4 @@ const CheckBox = styled.input`
 const SelectText = styled.span`
   font-size: 20px;
   margin-left: 20px;
-`;
-
-const ResultWrapper = styled.div`
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items: center;
-
-  .result-comment {
-    font-size: 30px;
-  }
-`;
-
-const ResultText = styled.div`
-  font-size: 20px;
 `;

@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import Btn from "./Btn";
 import { startQuiz } from "../features/result/resultSlice";
+import { MAIN_COLOR_1, WHITE_COLOR } from "../constants/styles";
 
 export default function Home() {
   const dispatch = useDispatch();
@@ -26,7 +27,7 @@ export default function Home() {
 
 const HomeWrapper = styled.div`
   height: 100vh;
-  background-color: #33d9b2;
+  background-color: ${MAIN_COLOR_1};
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
@@ -36,5 +37,5 @@ const HomeWrapper = styled.div`
 const Title = styled.div`
   font-size: 100px;
   font-weight: bold;
-  color: #ffffff;
+  color: ${WHITE_COLOR};
 `;
