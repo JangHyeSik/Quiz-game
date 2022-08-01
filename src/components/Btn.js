@@ -1,9 +1,9 @@
 import React from "react";
 import styled from "styled-components";
 
-export default function Btn({ handleGoNext, children }) {
+export default function Btn({ handleGoNext, value, children }) {
   return (
-    <Button onClick={handleGoNext}>
+    <Button onClick={handleGoNext} value={value}>
       {children}
     </Button>
   );

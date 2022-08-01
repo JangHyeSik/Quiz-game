@@ -26,9 +26,18 @@ const resultSlice = createSlice({
       state.isCompleted = true;
       state.time = time;
     },
+    resetQuiz: (state, { payload }) => {
+      const { startTime } = payload;
+
+      state.isCompleted = false;
+      state.correctCount = 0;
+      state.inCorrectCount = 0;
+      state.startTime = startTime;
+      state.time = 0;
+    }
   },
 });
 
-export const {startQuiz, changeScore, finishQuiz } = resultSlice.actions;
+export const {startQuiz, changeScore, finishQuiz, resetQuiz } = resultSlice.actions;
 
 export default resultSlice.reducer;
