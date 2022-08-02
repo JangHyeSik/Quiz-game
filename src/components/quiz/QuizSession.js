@@ -2,11 +2,11 @@ import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import Quiz from "./Quiz";
-import Btn from "./Btn";
-import { finishQuiz, resetQuiz } from "../features/result/resultSlice";
-import { requestQuizList } from "../api/api";
-import { WHITE_COLOR } from "../constants/styles";
+import Quiz from './Quiz';
+import Btn from "../../utils/Btn";
+import { finishQuiz, resetQuiz } from "../../features/result/resultSlice";
+import { requestQuizList } from "../../api/api";
+import { WHITE_COLOR } from "../../constants/styles";
 
 export default function QuizSession() {
   const dispatch = useDispatch();

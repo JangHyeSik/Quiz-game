@@ -39,6 +39,11 @@ const ChartWrapper = styled.div`
   position: relative;
   width: 300px;
   height: 300px;
+
+  @media (max-width: 768px) {
+    width: 250px;
+    height: 250px;
+  }
 `;
 
 const ScoreText = styled.div`
@@ -47,4 +52,10 @@ const ScoreText = styled.div`
   left: 40%;
   font-size: 30px;
   font-weight: bold;
+
+  @media (max-width: 768px) {
+    bottom: 63%;
+    left: 42%;
+    font-size: 20px;
+  }
 `;

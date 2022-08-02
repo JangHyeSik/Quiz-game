@@ -33,4 +33,9 @@ const Button = styled.button`
   :hover:after {
     opacity: 1;
   }
+
+  @media (max-width: 768px) {
+    padding: 20px;
+    font-size: 15px;
+  }
 `;

@@ -2,9 +2,9 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import Btn from "./Btn";
-import { startQuiz } from "../features/result/resultSlice";
-import { MAIN_COLOR_1, WHITE_COLOR } from "../constants/styles";
+import Btn from "../../utils/Btn";
+import { startQuiz } from "../../features/result/resultSlice";
+import { MAIN_COLOR_1, WHITE_COLOR } from "../../constants/styles";
 
 export default function Home() {
   const dispatch = useDispatch();
@@ -38,4 +38,8 @@ const Title = styled.div`
   font-size: 100px;
   font-weight: bold;
   color: ${WHITE_COLOR};
+
+  @media (max-width: 768px) {
+    font-size: 60px;
+  }
 `;

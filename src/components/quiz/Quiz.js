@@ -2,10 +2,11 @@ import { useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux/es/exports";
 import styled from "styled-components";
 import { shuffle } from "lodash";
-import Loading from "./Loading";
-import Result from "./Result";
-import { changeScore } from "../features/result/resultSlice";
-import { MAIN_COLOR_1, WHITE_COLOR, GRAY_COLOR } from "../constants/styles";
+import Result from "../result/Result";
+import Loading from "../../utils/Loading";
+import { changeScore } from "../../features/result/resultSlice";
+import { MAIN_COLOR_1, WHITE_COLOR, GRAY_COLOR } from "../../constants/styles";
+
 
 export default function Quiz({ quizList, quizIndex, isCheck, setIsCheck, isLoading }) {
   const dispatch = useDispatch();
@@ -70,6 +71,9 @@ const QuizWrapper = styled.div`
 `;
 
 const Question = styled.h2`
+  @media (max-width: 768px) {
+    font-size: 15px;
+  }
 `;
 
 const SelectWrapper = styled.div`
@@ -78,6 +82,10 @@ const SelectWrapper = styled.div`
   align-items: center;
   border-radius: 10px;
   background-color: ${({ isCheck, isCorrect }) => isCheck ? isCorrect ? MAIN_COLOR_1 : GRAY_COLOR : WHITE_COLOR};
+
+  @media (max-width: 768px) {
+    height: 5%;
+  }
 `;
 
 const CheckBox = styled.input`
@@ -87,4 +95,8 @@ const CheckBox = styled.input`
 const SelectText = styled.span`
   font-size: 20px;
   margin-left: 20px;
+
+  @media (max-width: 768px) {
+    font-size: 12px;
+  }
 `;

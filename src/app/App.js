@@ -1,6 +1,6 @@
 import { Routes, Route } from "react-router-dom";
-import Home from "../components/Home";
-import QuizSession from "../components/QuizSession";
+import Home from "../components/home/Home";
+import QuizSession from "../components/quiz/QuizSession";
 
 function App() {
   return (
