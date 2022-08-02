@@ -67,7 +67,7 @@ export default function QuizSession() {
   }, []);
 
   return (
-    <QuizSessionWrapper>
+    <QuizSessionWrapper isCompleted={isCompleted}>
       <QuizContainer>
         <Quiz
           quizList={quizList}
@@ -95,7 +95,7 @@ const QuizSessionWrapper = styled.div`
   align-items: center;
 
   @media (max-width: 768px) {
-    flex-direction: column;
+    flex-direction: ${({ isCompleted }) => !isCompleted ? "row" : "column"};
   }
 `;
 
