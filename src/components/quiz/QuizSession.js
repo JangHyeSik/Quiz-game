@@ -93,6 +93,10 @@ const QuizSessionWrapper = styled.div`
   display: flex;
   justify-content: space-evenly;
   align-items: center;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
 `;
 
 const QuizContainer = styled.div`
@@ -108,4 +112,8 @@ const BtnContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
+  @media (max-width: 768px) {
+    flex-direction: row;
+  }
 `;
